@@ -1,0 +1,20 @@
+span {
+  background: linear-gradient(45deg, #fd530f, #ffa958, #fbaf35,#f13800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 1;
+  animation: smooth-gradient 10s ease infinite, smooth-opacity 10s ease infinite;
+  background-size: 400% 400%;
+}
+
+@keyframes smooth-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

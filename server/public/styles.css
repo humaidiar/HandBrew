@@ -1,0 +1,443 @@
+/*!*******************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./client/styles/index.scss ***!
+  \*******************************************************************************************************************/
+.card-front {
+  width: 380px;
+  height: 480px;
+  margin: 8px;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: rgba(32, 32, 32, 0.733);
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
+@media (max-width: 500px) {
+  .card-front {
+    width: 75vw;
+  }
+}
+.card-front .img_size {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-front .card-body {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background: linear-gradient(-45deg, transparent, rgba(12, 12, 12, 0.98));
+  color: white;
+  transition: 1.5s;
+}
+.card-front .card-body:hover {
+  backdrop-filter: blur(8px);
+  background-color: rgba(12, 12, 12, 0.33);
+}
+.card-front .title-card {
+  padding: 0px 75px 0px 35px;
+}
+.card-front .title-card h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  word-spacing: 0.01em;
+}
+.card-front .card-text-bottom {
+  word-spacing: 0.02em;
+  position: absolute;
+  padding: 0px 40px 30px 30px;
+  opacity: 0;
+  bottom: 15px;
+  transition: 1.5s;
+}
+.card-front p {
+  letter-spacing: 0.01em;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+.card-front .card-body:hover .card-text-bottom {
+  opacity: 1;
+}
+.card-front .button-group {
+  display: flex;
+  gap: 1.2rem;
+  padding-top: 0.8rem;
+}
+.card-front .button-group .button-card {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid rgb(253, 253, 253);
+  border-radius: 20px;
+  background-color: #fdfdfd;
+  color: #333;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.card-front .button-group .button-card:hover {
+  background-color: transparent;
+  color: white;
+}
+.card-front .button-group .button-card-delete {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid rgba(205, 205, 205, 0.6588235294);
+  border-radius: 20px;
+  background-color: transparent;
+  color: rgba(205, 205, 205, 0.6588235294);
+  transition: 0.5s;
+  cursor: pointer;
+}
+.card-front .button-group .button-card-delete:hover {
+  color: rgba(148, 148, 148, 0.6588235294);
+  border: 2px solid rgba(148, 148, 148, 0.6588235294);
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(208, 207, 207, 0.392);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #fd530f, #ffa958, #fbaf35);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.5s ease;
+  animation-name: smoothcolor, smoothopacity;
+  animation-duration: 3s, 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes smoothcolor {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+@keyframes smoothopacity {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+.form-add {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  background-color: rgb(244, 244, 244);
+  border-radius: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 0px 16px;
+}
+.form-add h1 {
+  width: 100%;
+  font-size: 45px;
+  word-spacing: -0.08em;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+@media (max-width: 400px) {
+  .form-add h1 {
+    font-size: 2rem;
+  }
+}
+.form-add form {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2rem;
+  gap: 12px;
+}
+@media (max-width: 700px) {
+  .form-add form {
+    width: 400px;
+  }
+}
+@media (max-width: 400px) {
+  .form-add form {
+    width: 200px;
+  }
+}
+.form-add form label {
+  display: relative;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0.08rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+.form-add form input, .form-add form textarea {
+  width: 95%;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  outline: none;
+  opacity: 0.7;
+  font: 1rem "Helvetica Neue", Helvetica, Arial, sans-serif;
+  transition: 0.5s;
+}
+.form-add form input:hover, .form-add form input:focus, .form-add form textarea:hover, .form-add form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(203, 203, 203, 0.4), 0 0 10px rgba(204, 204, 204, 0.4), 0 0 10px hsla(0, 0%, 80%, 0.4);
+  border-color: transparent;
+}
+.form-add form input:focus::placeholder, .form-add form textarea:focus::placeholder {
+  opacity: 0.3;
+}
+.form-add form textarea {
+  height: 70px;
+}
+.form-add form button {
+  width: 100px;
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid rgba(15, 15, 15, 0.968627451);
+  border-radius: 20px;
+  background-color: transparent;
+  color: rgba(15, 15, 15, 0.968627451);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.form-add form button:hover {
+  background-color: rgb(26, 26, 26);
+  border-color: transparent;
+  color: white;
+}
+
+span {
+  background: linear-gradient(45deg, #fd530f, #ffa958, #fbaf35, #f13800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 1;
+  animation: smooth-gradient 10s ease infinite, smooth-opacity 10s ease infinite;
+  background-size: 400% 400%;
+}
+
+@keyframes smooth-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.container {
+  margin: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  /* Form wrapper */
+  /* Card list */
+}
+.container .form-wrapper {
+  position: sticky;
+  width: 35%;
+  margin: 2em;
+  top: 3rem;
+}
+@media (max-width: 1150px) {
+  .container .form-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.container .card-list {
+  display: flex;
+  position: relative;
+  width: 70%;
+  left: 34vw;
+  margin-top: -50%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+@media (max-width: 1150px) {
+  .container .card-list {
+    width: 100%;
+    margin: 0;
+    left: 0;
+    margin-top: 2em;
+  }
+}
+
+.card-front-block {
+  width: 400px;
+  height: 500px;
+  margin: 8px;
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  top: 1.35rem;
+  left: 41vw;
+  background-color: #f2f2f2;
+  border-radius: 20px;
+}
+
+.backdrop-update {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: rgba(208, 207, 207, 0.392);
+  backdrop-filter: blur(5px);
+}
+.backdrop-update .form-update {
+  position: relative;
+  width: 50%;
+  padding: 0 2em;
+  margin: 10% auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  background-color: rgb(244, 244, 244);
+  border-radius: 20px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 0px 16px;
+}
+.backdrop-update .form-update form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2rem;
+  gap: 12px;
+}
+.backdrop-update .form-update form label {
+  display: relative;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0.08rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+.backdrop-update .form-update form input, .backdrop-update .form-update form textarea {
+  width: 95%;
+  height: 30px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  outline: none;
+  opacity: 0.7;
+  font: 1rem "Helvetica Neue", Helvetica, Arial, sans-serif;
+  transition: 0.5s;
+}
+.backdrop-update .form-update form input:hover, .backdrop-update .form-update form input:focus, .backdrop-update .form-update form textarea:hover, .backdrop-update .form-update form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(203, 203, 203, 0.4), 0 0 10px rgba(204, 204, 204, 0.4), 0 0 10px hsla(0, 0%, 80%, 0.4);
+  border-color: transparent;
+}
+.backdrop-update .form-update form input:focus::placeholder, .backdrop-update .form-update form textarea:focus::placeholder {
+  opacity: 0.3;
+}
+.backdrop-update .form-update form textarea {
+  height: 70px;
+}
+.backdrop-update .form-update form .button-group-update {
+  display: flex;
+  gap: 1.2rem;
+  padding-top: 0.8rem;
+}
+.backdrop-update .form-update form .button-group-update .button-update {
+  width: 100px;
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid rgba(15, 15, 15, 0.968627451);
+  border-radius: 20px;
+  background-color: transparent;
+  color: rgba(15, 15, 15, 0.968627451);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.backdrop-update .form-update form .button-group-update .button-update:hover {
+  background-color: rgb(26, 26, 26);
+  border-color: transparent;
+  color: white;
+}
+.backdrop-update .form-update form .button-group-update .button-close {
+  width: 100px;
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #b8b8b8;
+  border-radius: 20px;
+  background-color: transparent;
+  color: #b8b8b8;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.backdrop-update .form-update form .button-group-update .button-close:hover {
+  color: rgba(176, 176, 176, 0.6588235294);
+  border: 2px solid rgba(176, 176, 176, 0.6588235294);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+}
+
+.footer {
+  width: 70%;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+/*# sourceMappingURL=styles.css.map*/

@@ -1,17 +1,31 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { response } from 'express'
 import request from 'superagent'
-import { Widget } from '../models/Widget'
+import { CoffeeData } from './models/Coffee'
 
-const widgetUrl = '/api/v1/widgets/'
-
-export function getWidgets(): Promise<Widget[]> {
-  return request.get('/api/v1/widgets/').then((res) => res.body)
+export function getAllCoffee(): Promise<CoffeeData[]> {
+  return request.get('/api/v1/coffee').then((res) => res.body)
 }
 
-export function addWidgetsTool(): Promise<Widget> {
+export function addCoffeeApi(newCoffee: CoffeeData): Promise<CoffeeData> {
   return request
-    .post(widgetUrl)
-    .send()
-    .then((res) => res.body)
+    .post('/api/v1/coffee')
+    .send(newCoffee)
+    .then((res) => {
+      return res.body
+    })
+}
+
+export function updateCoffeeApi(
+  id: number,
+  newcoffee: CoffeeData
+): Promise<CoffeeData> {
+  return request
+    .patch(`/api/v1/coffee/${id}`)
+    .send(newcoffee)
+    .then((res) => {
+      return res.body
+    })
+}
+
+export function deleteCoffeeApi(coffeeId: number): Promise<number> {
+  return request.del(`/api/v1/coffee/${coffeeId}`).then((res) => res.body)
 }

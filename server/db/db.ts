@@ -1,38 +1,44 @@
-import config from './knexfile'
-import knex from 'knex'
-import { Widget } from '../../models/Widget'
+import { CoffeeData } from '../../client/models/Coffee'
+import connection from './connection'
 
-type Environment = 'production' | 'test' | 'development'
-const environment = (process.env.NODE_ENV as Environment) || 'development'
-const connection = knex(config[environment])
-
-export function getWidgets(db = connection): Promise<Widget[]> {
-  return db('widgets').select()
+export function getCoffeeData(db = connection): Promise<CoffeeData[]> {
+  return db('coffee').select()
 }
 
-export function addWidgets(
-  newWidget: Widget,
+export function addCoffeeData(
+  newCoffee: CoffeeData,
   db = connection
-): Promise<Widget[]> {
-  return db('widgets').insert(newWidget).returning(['id', 'price', 'mfg'])
+): Promise<CoffeeData[]> {
+  return db('coffee')
+    .insert({
+      name: newCoffee.name,
+      url: newCoffee.url,
+      selftext: newCoffee.selftext,
+    })
+    .returning(['id', 'name', 'url', 'selftext'])
 }
 
-export function delWidgets(id: number, db = connection): Promise<number> {
-  return db('widgets').del().where('id', id)
-}
-
-export function updWidgets(
-  newWidget: Widget,
+export function updateCoffeeData(
+  updateCoffee: CoffeeData,
   db = connection
-): Promise<Widget[]> {
-  return db('widgets')
+): Promise<CoffeeData[]> {
+  return db('coffee')
     .select()
-    .where('widgets.id', newWidget.id)
+    .where('coffee.id', updateCoffee.id)
     .first()
     .update({
-      name: newWidget.name,
-      price: newWidget.price,
-      mfg: newWidget.mfg,
+      name: updateCoffee.name,
+      url: updateCoffee.url,
+      selftext: updateCoffee.selftext,
     })
-    .returning(['name', 'price', 'mfg'])
+    .returning(['id', 'name', 'selftext'])
+}
+
+export function deleteCoffeeData(id: number, db = connection): Promise<number> {
+  return db('coffee')
+    .where('coffee.id', id)
+    .del()
+    .then(() => {
+      return db('coffee').delete().where('coffee.id', id)
+    })
 }

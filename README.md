@@ -1,169 +1,103 @@
-# The Wonderful World of Widgets
+# Fullstack Collection App
 
-This exercise reverses the roles from yesterday: today the API has been (partially) built for us. Our job is to build the React front end that consumes the API (using the node module `superagent`), and store the resulting data into component state.
+This repo is designed to provide space to code a fullstack app. It contains node modules and folders for databases, routes, api requests, react components, and redux actions and creators. Let's get going!
 
 ## Setup
 
-### 0. Installation and migrations
-
-- [ ] Clone this repo and `cd` into the new directory
-- [ ] Install packages, run migrations and seeds, and start the dev server with `npm run dev`
+### 0. Cloning and installation
+- [ ] Clone this repo, navigate to it, install packages, and start the server with `npm run dev`
   <details style="padding-left: 2em">
     <summary>Tip</summary>
 
-  Commands might look like this:
-
-  ```sh
-  npm install
-  npm run knex migrate:latest
-  npm run knex seed:run
-  npm run dev
-  ```
-
+    You may also want to start a new branch
+    ```sh
+    cd my-fullstack-collection-scss
+    npm i
+    git checkout -b <branchname>
+    npm run dev
+    ```
   </details>
 
-- [ ] Navigate to [http://localhost:3000](http://localhost:3000)
+<details>
+  <summary>More about using <code>npm</code> vs <code>npx</code></summary>
 
----
-
-## Laying the foundations
-
-### 1. Getting familiar with the code base
-
-- [ ] Take a look around the project to make sure you're familiar with the layout
-  <details style="padding-left: 2em">
-    <summary>Tips</summary>
-
-  - Take particular note of what is in your client folder and the setup of the server routes in the back end
-  - Investigate the shape of the data in the database
-  </details>
-
-### 2. Setting up the `<App>` component
-
-The widget data is being stored in a database (on our server side), so we'll have to make an API call to retrieve the data.
-
-- [ ] Add a `useState` hook to the `<App>` component, so we can store `widgets` in component state. Make the initial value an empty array with the type `Widget[]`.
-  <details style="padding-left: 2em">
-    <summary>More about <code>&lt;useState&gt;</code> and types</summary>
-
-  If `useState` is given an empty array as its initial value TypeScript will assume the array's type is `never[]`, an array that is always empty. To allow us to later store data in this array we need to cast the type using the `as` keyword.
-  
-  To store `widgets` our useState will look like this:
-  ```ts
-  const [widgets, setWidgets] = useState([] as Widget[])
-  ```
-  
-  The Widget interface is already defined in `models/Widget.ts`.
-
-  </details>
-
-- [ ] Also add a `useEffect` hook to `<App>`
-  <details style="padding-left: 2em">
-    <summary>More about <code>&lt;useEffect&gt;</code></summary>
-
-  `useEffect` accepts a function as its first parameter. Eventually we will call the API function from here, but for now just have this function do a `console.log('using the effect')`
-
-  - Remember to pass an empty array to `useEffect` as the second parameter (so that the function only runs once - when the component mounts)
-  - Refresh the app in your browser the with DevTools console open. Make sure you can see your `useEffect` message
-  </details>
-
----
-
-## Building up the stack
-
-### 3. Connecting the server API to the client API
-
-- [ ] Using Insomnia, test that the existing GET route for widgets is working, and see what data it returns
-  <details style="padding-left: 2em">
-    <summary>More about the GET route</summary>
-
-  Looking in our `server` folder, we can see that a database function called `getWidgets` has already been built in `db/db.ts`. A GET route using that DB function is also in place in `routes/widgets.ts`.
-
-  Test that the route is working (and see what data it returns) by making a GET request to `http://localhost:3000/api/v1/widgets/` from Insomnia.
-  </details>
-
-- [ ] Using the `getWidgets` function in `apiClient.ts` and the `superagent` library, make a GET request to `'/api/v1/widgets/'`, just like we did with Insomnia
-  <details style="padding-left: 2em">
-    <summary>More about the <code>getWidgets</code> request</summary>
-
-  This time looking in the client folder, you'll find a `getWidgets` function in `apiClient.ts`. Use `superagent` to make a GET request to `'/api/v1/widgets/'`. If all goes well, it should be returning just the response body (which is the JSON data being sent from our server - we don't need the rest of the HTTP response data).
-  </details>
-
-- [ ] Import this `getWidgets` function from `apiClient.ts` into `App.tsx`
-
-### 4. Connecting the client API to the user interface (UI)
-
-- [ ] In the function you passed to `useEffect`, call the `getWidgets` function
-  <details style="padding-left: 2em">
-    <summary>More about <code>getWidgets</code> inside <code>useEffect</code></summary>
-
-  - Superagent uses a promise-based interface, so you will need to chain a `.then()` block after this
-  - Inside your `.then()` block, `console.log` the result of `getWidgets`
-  - Refresh the app in your browser again. Make sure you can see the array of widget data in the console
-  </details>
-
-- [ ] Remove the `console.log` and instead use the `setWidgets` function (from your `useState`) to update state with the widget data from the API
-
-- [ ] Use the React Dev Tools to check that state updates as you expect
-
-### 5. Updating the UI to consume the data
-
-- [ ] Modify the `tsx` your component returns so that it displays the widgets from the component state
-<details style="padding-left: 2em">
-  <summary>Tip</summary>
-  
-  You could use a `.map` here to render a new `<Widget>` component for each widget. 
-
-   To avoid a name clash with the `<Widget>` component and the `Widget` type interface use a [_namespace_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#namespace_import) import and update the cast for the type with dot notation.
-   
-  ```ts
-  import * as Models from '../../models/Widget'
-
-  const [widgets, setWidgets] = useState([] as Models.Widget[])
-  ```
-
+  - When running knex, run `npm run knex <command>`, e.g. `npm run knex migrate:latest` rather than using `npx`
+  - When running webpack, run `npm run webpack <extra commands>`, e.g. `npm run webpack`, rather than using `npx`
 </details>
 
 ---
 
-## Full Stack
+## Requirements
 
-These next steps will be full stack, requiring you to make changes to both the front and back end.
+### 1. Choosing your data set
 
-### 6. Adding, deleting, and updating widgets
+- [ ] First, decide what you would like to keep a collection of. This could be a repo for keeping track of movies, books, gifs, cars, rocks, anything you fancy, but keep it simple!
+  <details style="padding-left: 2em">
+    <summary>More about your collection</summary>
 
-- [ ] Add the ability to add a widget (HTTP POST)
-<details style="padding-left: 2em">
-  <summary>More about adding a widget</summary>
-  
-  Some steps you could take to complete this are:
-  - Create a POST route on the server side in `widgets.js`. Test you can get a response for it in Insomnia
-  - Create the database function to add a new widget. Call this function in your route and test it works in Insomnia
-  - Create an `addWidget` function in `apiClient.ts` that will make a POST request to the API route you just built
-  - Create a new `<AddWidget>` component containing a form. Import the `addWidget` function from `apiClient.ts` and hook it up to your form's submit handler
-  - Once your widget has been added, have your widget list refresh so the new widget is visible. Perhaps this could involve reusing the `getWidgets` API function, or thinking about the data you return from your POST route...
-  - Create an "Add Widget" button in `<App>` to conditionally render your `<AddWidget>` form
-</details>
+    **Note:** the aim is to have some simple data. If you think you might need more than one database table, or have lots of details you want to store, how could you simplify the information you're keeping track of? Leave more complex data until later in the project. For example, I want to keep track of books that I want to read, ones that I have read, and ones that I own. To start with though, let's keep track of the books themselves. My data might look like:
 
-- [ ] Add the ability to delete a widget (HTTP DELETE)
+    |id|title|author|
+    |---|---|---|
+    | 1 | Ready Player One | Ernest Cline |
+    | 2 | Throwing Rocks at the Google Bus | Douglas Rushkoff |
 
-- [ ] Add the ability to update a widget (HTTP PATCH)
+Our first job is getting something showing on the front end from our database. Here's a list of steps in case they are useful. You can build in any order you like though ;)
 
-### 7. Enhancing widget info
+## Back end
 
-- [ ] Extend the database schema to include a `rating` for each widget
-<details style="padding-left: 2em">
-  <summary>More about widget ratings</summary>
-  
-  Add a `rating` field so we know how good those widgets really are. This will also need to be added into what is displayed, and also onto the fields of the add form.
-</details>
+### 2. Building the database
 
-### 8. Increasing maintainability
+- [ ] Design a database to store a list of your things (e.g. books)
+- [ ] Build the migrations and seed data
 
-- [ ] Refactor your code into separate components (if it isn't already)
+### 3. Building the API
+- [ ] Build an API (back end route) to get the information from your database
+- [ ] Test your API with Insomnia
 
-- [ ] Write tests for your components
+## Front end
+
+### 4. Setting the stage
+
+- [ ] Build a React component with static html
+- [ ] Build Redux reducer. Start with a hardcoded initial state
+  <details style="padding-left: 2em">
+    <summary>Tip</summary>
+    
+    For example:
+    ```js
+    const initialState = [{ id: 1, title: 'Ready Player One', author: 'Ernest Cline' }]
+    ```
+  </details>
+
+- [ ] Use `useAppSelector` to display the redux state you hardcoded in the React Component
+
+### 5. Building the API client
+- [ ] Build an API client in the front end to request the information from your routes
+
+### 6. Building thunky actions
+- [ ] Build Thunk actions to use the API and get the information
+- [ ] Build Redux actions to save task data from the thunk
+- [ ] Use `useAppDispatch` and `useEffect` to dispatch the thunk when your app loads
+
+## Additional functionality
+
+### 7. Adding, deleting, and updating records
+- [ ] Include the ability to add a new record (will need a form in your components)
+- [ ] Include the ability to remove/delete records
+- [ ] Include the ability to update records (e.g. for correcting typos)
 
 ---
+## Stretch
 
-[Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=react-to-web-api)
+<details>
+  <summary>More about stretch challenges</summary>
+
+  - Is there any complex data you chose to not include earlier or any way you could expand this dataset?
+    - You might have some other information (e.g. unread books vs. read books) that should be included in your database design, and this may require adjusting your database design
+  - Could you add an external API (maybe an inspirational quote in the footer?)
+  - If you haven't already, CSS!
+</details>
+
+---
+[Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=my-fullstack-collection-scss)
