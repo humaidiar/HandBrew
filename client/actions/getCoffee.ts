@@ -88,9 +88,12 @@ export function fetchDelCoffee(method_id: number): ThunkAction {
   }
 }
 
-export function fetchUpdateCoffee(id: number, update_method: CoffeeData): ThunkAction {
+export function fetchUpdateCoffee(
+  id: number,
+  update_method: CoffeeData
+): ThunkAction {
   return (dispatch) => {
-    return updateCoffeeApi(id,update_method)
+    return updateCoffeeApi(id, update_method)
       .then((method) => {
         dispatch(updateCoffeeItem(method))
       })

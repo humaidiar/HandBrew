@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const newCoffee = req.body
   addCoffeeData(newCoffee)
-    .then((coffee) => res.json(coffee[0]))
+    .then((coffee) => res.json(coffee))
     .catch((err: Error) => {
       res.status(500).send(err.message)
     })

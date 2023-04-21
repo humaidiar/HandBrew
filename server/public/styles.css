@@ -65,7 +65,7 @@
   gap: 1.2rem;
   padding-top: 0.8rem;
 }
-.card-front .button-group .button-card {
+.card-front .button-group .button-card-update {
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
@@ -78,7 +78,7 @@
   transition: 0.5s;
   cursor: pointer;
 }
-.card-front .button-group .button-card:hover {
+.card-front .button-group .button-card-update:hover {
   background-color: transparent;
   color: white;
 }
@@ -284,16 +284,22 @@ span {
     align-items: center;
   }
 }
+@media (min-width: 1550px) {
+  .container .form-wrapper {
+    position: relative;
+    margin: 0 auto;
+  }
+}
 .container .card-list {
+  width: 65%;
+  left: 35vw;
+  margin-top: -50%;
   display: flex;
   position: relative;
-  width: 70%;
-  left: 34vw;
-  margin-top: -50%;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 @media (max-width: 1150px) {
   .container .card-list {
@@ -301,6 +307,13 @@ span {
     margin: 0;
     left: 0;
     margin-top: 2em;
+  }
+}
+@media (min-width: 1550px) {
+  .container .card-list {
+    width: 100%;
+    margin-top: 5%;
+    left: 0vw;
   }
 }
 
@@ -329,8 +342,8 @@ span {
 }
 .backdrop-update .form-update {
   position: relative;
-  width: 50%;
-  padding: 0 2em;
+  width: 40%;
+  padding: 0 3em;
   margin: 10% auto;
   display: flex;
   flex-direction: column;
@@ -341,6 +354,25 @@ span {
   background-color: rgb(244, 244, 244);
   border-radius: 20px;
   box-shadow: rgba(17, 17, 26, 0.05) 0px 0px 16px;
+}
+.backdrop-update .form-update .close-container {
+  display: flex;
+  justify-content: space-between;
+}
+.backdrop-update .form-update .close-container .button-close {
+  width: 100px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  color: #b8b8b8;
+  transition: 0.3s;
+  cursor: pointer;
+  right: 0;
+}
+.backdrop-update .form-update .close-container .button-close:hover {
+  color: rgba(101, 101, 101, 0.8431372549);
 }
 .backdrop-update .form-update form {
   width: 100%;
@@ -403,25 +435,6 @@ span {
   background-color: rgb(26, 26, 26);
   border-color: transparent;
   color: white;
-}
-.backdrop-update .form-update form .button-group-update .button-close {
-  width: 100px;
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 10px 20px;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  border: 2px solid #b8b8b8;
-  border-radius: 20px;
-  background-color: transparent;
-  color: #b8b8b8;
-  transition: 0.3s;
-  cursor: pointer;
-}
-.backdrop-update .form-update form .button-group-update .button-close:hover {
-  color: rgba(176, 176, 176, 0.6588235294);
-  border: 2px solid rgba(176, 176, 176, 0.6588235294);
 }
 
 body {

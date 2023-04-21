@@ -13,9 +13,9 @@ export default function UpdateForm({ coffee, onClose }: Props) {
   const dispatch = useAppDispatch()
   const id = coffee.id
   const [updatedCoffee, setUpdatedCoffee] = useState({
-    name: '',
-    url: '',
-    selftext: '',
+    name: coffee.name,
+    url: coffee.url,
+    selftext: coffee.selftext,
   } as CoffeeData)
 
   const handleChange = (
@@ -43,7 +43,16 @@ export default function UpdateForm({ coffee, onClose }: Props) {
         <div className="backdrop-update">
           <div className="form-update">
             <form onSubmit={handleSubmit}>
-              <h2>Update Information</h2>
+              <div className="close-container">
+                <h2>Update Information</h2>
+                <button
+                  className="button-close"
+                  type="button"
+                  onClick={onClose}
+                >
+                  Close
+                </button>
+              </div>
               <label htmlFor="name">Method Name</label>
               <input
                 name="name"
@@ -51,7 +60,7 @@ export default function UpdateForm({ coffee, onClose }: Props) {
                 type="text"
                 value={updatedCoffee.name}
                 onChange={handleChange}
-                placeholder="Update the name"
+                placeholder={coffee.name}
                 required
               />
               <label htmlFor="url">Image Url </label>
@@ -61,7 +70,7 @@ export default function UpdateForm({ coffee, onClose }: Props) {
                 type="text"
                 value={updatedCoffee.url}
                 onChange={handleChange}
-                placeholder="ex:'https://images....'"
+                placeholder="ex:https://images...."
                 required
               />
               <label htmlFor="selftext">Short Description </label>
@@ -71,19 +80,12 @@ export default function UpdateForm({ coffee, onClose }: Props) {
                 value={updatedCoffee.selftext}
                 className="text-input"
                 onChange={handleChange}
-                placeholder="Max 20 words"
+                placeholder="Edit your text"
                 required
               />
               <div className="button-group-update">
                 <button className="button-update" type="submit">
                   Submit
-                </button>
-                <button
-                  className="button-close"
-                  type="button"
-                  onClick={onClose}
-                >
-                  Close
                 </button>
               </div>
             </form>

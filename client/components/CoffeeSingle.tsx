@@ -5,7 +5,7 @@ import UpdateForm from './FormUpdate'
 import { useState } from 'react'
 
 interface Props {
-  coffeeProp: CoffeeData
+  coffeeProp: CoffeeData 
 }
 
 export default function SingleCoffee(props: Props) {
@@ -37,7 +37,7 @@ export default function SingleCoffee(props: Props) {
                 onClick={() => {
                   setToggle(!toggle)
                 }}
-                className="button-card"
+                className="button-card-update"
               >
                 Update
               </button>

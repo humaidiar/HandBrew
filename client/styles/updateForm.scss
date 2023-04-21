@@ -12,8 +12,8 @@
   
   .form-update{
   position: relative;
-  width: 50%;
-  padding: 0 2em;
+  width: 40%;
+  padding: 0 3em;
   margin: 10% auto;
   
   display: flex;
@@ -27,6 +27,28 @@
   border-radius: 20px;
   box-shadow: rgba(17, 17, 26, 0.05) 0px 0px 16px;
 
+    
+    .close-container{
+      display: flex;
+      justify-content: space-between;
+
+      .button-close {
+            width: 100px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            background-color: transparent;
+            color: #b8b8b8;
+            transition: 0.3s;
+            cursor: pointer;
+            right: 0;
+  
+            &:hover {
+              color: #656565d7;
+            }
+          }
+    }
 
 
     form {
@@ -101,29 +123,8 @@
               color: white;
             }
           }
-
-          .button-close {
-            width: 100px;
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 10px 20px;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            border: 2px solid #b8b8b8;
-            border-radius: 20px;
-            background-color: transparent;
-            color: #b8b8b8;
-            transition: 0.3s;
-            cursor: pointer;
-  
-            &:hover {
-              color: #b0b0b0a8;
-              border: 2px solid #b0b0b0a8;
-          
-            }
-          }
        }
     }
   }
 }
+

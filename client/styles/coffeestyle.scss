@@ -3,6 +3,7 @@
   display: flex;
   flex-wrap: wrap;
 
+
   /* Form wrapper */
   .form-wrapper {
     position: sticky;
@@ -19,28 +20,38 @@
       justify-content: center;
       align-items: center;
     }
+    @media (min-width: 1550px){
+      position: relative;
+      margin : 0 auto;
+    }
   }
 
   /* Card list */
   .card-list {
+    
+    width: 65%;
+    left: 35vw;
+    margin-top: -50%;
+
+    
     display: flex;
     position: relative;
-    width: 70%;
-    left: 34vw;
-    margin-top: -50%;
-    
-
-
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 
     @media (max-width: 1150px) {
       width: 100%;
       margin: 0;
       left: 0;
       margin-top: 2em;
+    }
+
+    @media (min-width: 1550px){
+      width: 100%;
+      margin-top: 5%;
+      left: 0vw;
     }
   }
 }

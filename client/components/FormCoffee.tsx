@@ -6,28 +6,52 @@ import { CoffeeData } from '../models/Coffee'
 function AddMethodForm() {
   const dispatch = useAppDispatch()
 
-  const [coffeeMethod, setMethods] = useState({
+  const dataEmpty = {
     name: '',
     url: '',
     selftext: '',
-  } as CoffeeData)
+  } as CoffeeData
+
+  const [coffeeData, setCoffeeData] = useState<{
+    image: object
+    data: CoffeeData
+  }>({ image: {}, data: dataEmpty })
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setMethods({ ...coffeeMethod, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    setCoffeeData((prevCoffeeData) => ({
+      ...prevCoffeeData,
+      data: {
+        ...prevCoffeeData.data,
+        [name]: value,
+      },
+    }))
+  }
+
+  const updateFile = (e: ChangeEvent<HTMLInputElement>) => {
+    const fileArr = e.target.files as FileList
+    const file = fileArr[0]
+    setCoffeeData((prevCoffeeData) => ({
+      ...prevCoffeeData,
+      image: file, // Update the image property with the new File object
+    }))
   }
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    dispatch(fetchAddCoffee(coffeeMethod))
+    dispatch(fetchAddCoffee(coffeeData.data))
       .then(() => {
         setTimeout(() => {
           dispatch(fetchSetCoffee())
-        }, 1000)
+        }, 1800)
       })
       .catch((err) => err.message)
-    setMethods({ name: '', url: '', selftext: '' } as CoffeeData)
+    setCoffeeData({
+      ...coffeeData,
+      data: dataEmpty,
+    })
   }
 
   return (
@@ -38,7 +62,7 @@ function AddMethodForm() {
         <input
           name="name"
           type="text"
-          value={coffeeMethod.name}
+          value={coffeeData.data.name}
           onChange={handleChange}
           placeholder="Your badass brew method"
           required
@@ -47,15 +71,15 @@ function AddMethodForm() {
         <input
           name="url"
           type="text"
-          value={coffeeMethod.url}
+          value={coffeeData.data.url}
           onChange={handleChange}
-          placeholder="ex:'https://images....'"
+          placeholder="ex:https://images...."
           required
         />
         <label htmlFor="selftext">Short Description </label>
         <textarea
           name="selftext"
-          value={coffeeMethod.selftext}
+          value={coffeeData.data.selftext}
           className="text-input"
           onChange={handleChange}
           placeholder="Max 20 words"

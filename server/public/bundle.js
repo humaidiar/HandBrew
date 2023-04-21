@@ -4684,7 +4684,7 @@ function SingleCoffee(props) {
             onClick: () => {
               setToggle(!toggle);
             },
-            className: "button-card",
+            className: "button-card-update",
             children: "Update"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
             onClick: () => dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_0__.fetchDelCoffee)(id)),
@@ -4804,28 +4804,47 @@ __webpack_require__.r(__webpack_exports__);
 
 function AddMethodForm() {
   const dispatch = (0,_hooks_redux__WEBPACK_IMPORTED_MODULE_1__.useAppDispatch)();
-  const [coffeeMethod, setMethods] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  const dataEmpty = {
     name: '',
     url: '',
     selftext: ''
+  };
+  const [coffeeData, setCoffeeData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    image: {},
+    data: dataEmpty
   });
   const handleChange = e => {
-    setMethods({
-      ...coffeeMethod,
-      [e.target.name]: e.target.value
-    });
+    const {
+      name,
+      value
+    } = e.target;
+    setCoffeeData(prevCoffeeData => ({
+      ...prevCoffeeData,
+      data: {
+        ...prevCoffeeData.data,
+        [name]: value
+      }
+    }));
   };
+  const updateFile = e => {
+    const fileArr = e.target.files;
+    const file = fileArr[0];
+    setCoffeeData(prevCoffeeData => ({
+      ...prevCoffeeData,
+      image: file // Update the image property with the new File object
+    }));
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchAddCoffee)(coffeeMethod)).then(() => {
+    dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchAddCoffee)(coffeeData.data)).then(() => {
       setTimeout(() => {
         dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchSetCoffee)());
-      }, 1000);
+      }, 1800);
     }).catch(err => err.message);
-    setMethods({
-      name: '',
-      url: '',
-      selftext: ''
+    setCoffeeData({
+      ...coffeeData,
+      data: dataEmpty
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -4840,7 +4859,7 @@ function AddMethodForm() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
         name: "name",
         type: "text",
-        value: coffeeMethod.name,
+        value: coffeeData.data.name,
         onChange: handleChange,
         placeholder: "Your badass brew method",
         required: true
@@ -4850,16 +4869,16 @@ function AddMethodForm() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
         name: "url",
         type: "text",
-        value: coffeeMethod.url,
+        value: coffeeData.data.url,
         onChange: handleChange,
-        placeholder: "ex:'https://images....'",
+        placeholder: "ex:https://images....",
         required: true
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
         htmlFor: "selftext",
         children: "Short Description "
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("textarea", {
         name: "selftext",
-        value: coffeeMethod.selftext,
+        value: coffeeData.data.selftext,
         className: "text-input",
         onChange: handleChange,
         placeholder: "Max 20 words",
@@ -4906,9 +4925,9 @@ function UpdateForm(_ref) {
   const dispatch = (0,_hooks_redux__WEBPACK_IMPORTED_MODULE_1__.useAppDispatch)();
   const id = coffee.id;
   const [updatedCoffee, setUpdatedCoffee] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    name: '',
-    url: '',
-    selftext: ''
+    name: coffee.name,
+    url: coffee.url,
+    selftext: coffee.selftext
   });
   const handleChange = e => {
     setUpdatedCoffee({
@@ -4930,8 +4949,16 @@ function UpdateForm(_ref) {
       className: "form-update",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
         onSubmit: handleSubmit,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
-          children: "Update Information"
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "close-container",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+            children: "Update Information"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+            className: "button-close",
+            type: "button",
+            onClick: onClose,
+            children: "Close"
+          })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
           htmlFor: "name",
           children: "Method Name"
@@ -4941,7 +4968,7 @@ function UpdateForm(_ref) {
           type: "text",
           value: updatedCoffee.name,
           onChange: handleChange,
-          placeholder: "Update the name",
+          placeholder: coffee.name,
           required: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
           htmlFor: "url",
@@ -4952,7 +4979,7 @@ function UpdateForm(_ref) {
           type: "text",
           value: updatedCoffee.url,
           onChange: handleChange,
-          placeholder: "ex:'https://images....'",
+          placeholder: "ex:https://images....",
           required: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
           htmlFor: "selftext",
@@ -4963,20 +4990,15 @@ function UpdateForm(_ref) {
           value: updatedCoffee.selftext,
           className: "text-input",
           onChange: handleChange,
-          placeholder: "Max 20 words",
+          placeholder: "Edit your text",
           required: true
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "button-group-update",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
             className: "button-update",
             type: "submit",
             children: "Submit"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            className: "button-close",
-            type: "button",
-            onClick: onClose,
-            children: "Close"
-          })]
+          })
         })]
       })
     })
