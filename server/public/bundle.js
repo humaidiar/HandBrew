@@ -4820,7 +4820,7 @@ function AddMethodForm() {
     dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchAddCoffee)(coffeeMethod)).then(() => {
       setTimeout(() => {
         dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchSetCoffee)());
-      }, 1500);
+      }, 1000);
     }).catch(err => err.message);
     setMethods({
       name: '',

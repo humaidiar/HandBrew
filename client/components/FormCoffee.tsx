@@ -24,7 +24,7 @@ function AddMethodForm() {
       .then(() => {
         setTimeout(() => {
           dispatch(fetchSetCoffee())
-        }, 1500)
+        }, 1000)
       })
       .catch((err) => err.message)
     setMethods({ name: '', url: '', selftext: '' } as CoffeeData)
