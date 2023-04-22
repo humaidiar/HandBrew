@@ -3,6 +3,7 @@ import { useAppDispatch } from '../hooks/redux'
 import { fetchSetCoffee, fetchUpdateCoffee } from '../actions/getCoffee'
 import { CoffeeData } from '../models/Coffee'
 import ReactDOM from 'react-dom'
+import * as Base64 from 'base64-arraybuffer'
 
 interface Props {
   coffee: CoffeeData
@@ -25,6 +26,20 @@ export default function UpdateForm({ coffee, onClose }: Props) {
       ...updatedCoffee,
       [e.target.id]: e.target.value,
     })
+  }
+
+  const updateFile = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0]
+      const reader = new FileReader()
+      reader.readAsArrayBuffer(file)
+      reader.onload = () => {
+        setUpdatedCoffee({
+          ...updatedCoffee,
+          url: Base64.encode(reader.result as ArrayBuffer),
+        })
+      }
+    }
   }
 
   const handleSubmit = (e: FormEvent) => {
@@ -63,16 +78,7 @@ export default function UpdateForm({ coffee, onClose }: Props) {
                 placeholder={coffee.name}
                 required
               />
-              <label htmlFor="url">Image Url </label>
-              <input
-                name="url"
-                id="url"
-                type="text"
-                value={updatedCoffee.url}
-                onChange={handleChange}
-                placeholder="ex:https://images...."
-                required
-              />
+
               <label htmlFor="selftext">Short Description </label>
               <textarea
                 name="selftext"
@@ -83,6 +89,10 @@ export default function UpdateForm({ coffee, onClose }: Props) {
                 placeholder="Edit your text"
                 required
               />
+              <label htmlFor="url" className="minimalist-button">
+                Upload Photo
+              </label>
+              <input id="url" type="file" onChange={updateFile} required />
               <div className="button-group-update">
                 <button className="button-update" type="submit">
                   Submit
