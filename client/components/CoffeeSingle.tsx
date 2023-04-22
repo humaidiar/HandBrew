@@ -5,7 +5,7 @@ import UpdateForm from './FormUpdate'
 import { useState } from 'react'
 
 interface Props {
-  coffeeProp: CoffeeData 
+  coffeeProp: CoffeeData
 }
 
 export default function SingleCoffee(props: Props) {
@@ -22,7 +22,11 @@ export default function SingleCoffee(props: Props) {
   }
   return (
     <div className="card-front">
-      <img className="img_size" src={url} alt={name} />
+      <img
+        className="img_size"
+        src={`data:image/jpeg;base64,${url}`}
+        alt={name}
+      />
       <div className="card-body">
         <div className="title-card">
           <h2>{name}</h2>

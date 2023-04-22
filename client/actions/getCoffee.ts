@@ -69,6 +69,7 @@ export function fetchAddCoffee(newMethod: CoffeeData): ThunkAction {
     return addCoffeeApi(newMethod)
       .then((method) => {
         dispatch(requestCoffee(method))
+        // 2 second delay
       })
       .catch((err) => {
         dispatch(showError(err.message))

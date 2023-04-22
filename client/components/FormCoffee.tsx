@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { useAppDispatch } from '../hooks/redux'
 import { fetchAddCoffee, fetchSetCoffee } from '../actions/getCoffee'
 import { CoffeeData } from '../models/Coffee'
+import * as Base64 from 'base64-arraybuffer'
 
 function AddMethodForm() {
   const dispatch = useAppDispatch()
@@ -17,6 +18,8 @@ function AddMethodForm() {
     data: CoffeeData
   }>({ image: {}, data: dataEmpty })
 
+  const [fileName, setFileName] = useState<string>('')
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -31,12 +34,21 @@ function AddMethodForm() {
   }
 
   const updateFile = (e: ChangeEvent<HTMLInputElement>) => {
-    const fileArr = e.target.files as FileList
-    const file = fileArr[0]
-    setCoffeeData((prevCoffeeData) => ({
-      ...prevCoffeeData,
-      image: file, // Update the image property with the new File object
-    }))
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0]
+      setFileName(file.name)
+      const reader = new FileReader()
+      reader.readAsArrayBuffer(file)
+      reader.onload = () => {
+        setCoffeeData((prevCoffeeData) => ({
+          ...prevCoffeeData,
+          data: {
+            ...prevCoffeeData.data,
+            url: Base64.encode(reader.result as ArrayBuffer),
+          },
+        }))
+      }
+    }
   }
 
   const handleSubmit = (e: FormEvent) => {
@@ -45,13 +57,14 @@ function AddMethodForm() {
       .then(() => {
         setTimeout(() => {
           dispatch(fetchSetCoffee())
-        }, 1800)
+        }, 2000)
       })
       .catch((err) => err.message)
     setCoffeeData({
       ...coffeeData,
       data: dataEmpty,
     })
+    setFileName('')
   }
 
   return (
@@ -67,15 +80,6 @@ function AddMethodForm() {
           placeholder="Your badass brew method"
           required
         />
-        <label htmlFor="url">Image Url </label>
-        <input
-          name="url"
-          type="text"
-          value={coffeeData.data.url}
-          onChange={handleChange}
-          placeholder="ex:https://images...."
-          required
-        />
         <label htmlFor="selftext">Short Description </label>
         <textarea
           name="selftext"
@@ -85,6 +89,10 @@ function AddMethodForm() {
           placeholder="Max 20 words"
           required
         />
+        <label htmlFor="url" className="minimalist-button">
+          {fileName || 'Upload Photo'}
+        </label>
+        <input id="url" type="file" onChange={updateFile} required />
         <button type="submit">Submit</button>
       </form>
     </div>
