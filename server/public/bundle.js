@@ -4651,11 +4651,6 @@ function SingleCoffee(props) {
   } = props.coffeeProp;
   const dispatch = (0,_hooks_redux__WEBPACK_IMPORTED_MODULE_1__.useAppDispatch)();
   const [toggle, setToggle] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
-  //cut the words and joining the words => limiting words displaying on screen
-  // const words = selftext.split(' ')
-  // const limitedText = words.slice(0, 18).join(' ') + '...' //optinal
-  // -------
-
   const handleClose = () => {
     setToggle(false);
   };
@@ -4680,7 +4675,8 @@ function SingleCoffee(props) {
           className: "button-group",
           children: [toggle ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_FormUpdate__WEBPACK_IMPORTED_MODULE_2__["default"], {
             coffee: props.coffeeProp,
-            onClose: handleClose
+            onClose: handleClose,
+            show: toggle
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
             onClick: () => {
               setToggle(!toggle);
@@ -4697,6 +4693,11 @@ function SingleCoffee(props) {
     })]
   });
 }
+
+//cut the words and joining the words => limiting words displaying on screen
+// const words = selftext.split(' ')
+// const limitedText = words.slice(0, 18).join(' ') + '...' //optinal
+// -------
 
 /***/ }),
 
@@ -4934,7 +4935,8 @@ __webpack_require__.r(__webpack_exports__);
 function UpdateForm(_ref) {
   let {
     coffee,
-    onClose
+    onClose,
+    show
   } = _ref;
   const dispatch = (0,_hooks_redux__WEBPACK_IMPORTED_MODULE_1__.useAppDispatch)();
   const id = coffee.id;
@@ -4971,9 +4973,9 @@ function UpdateForm(_ref) {
   };
   const portalElement = document.getElementById('portal');
   return portalElement ? /*#__PURE__*/react_dom__WEBPACK_IMPORTED_MODULE_3__.createPortal( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-    className: "backdrop-update",
+    className: `backdrop-update${show ? ' show' : ''}`,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-      className: "form-update",
+      className: `form-update${show ? ' show' : ''}`,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
         onSubmit: handleSubmit,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {

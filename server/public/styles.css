@@ -344,6 +344,11 @@ span {
   z-index: 2;
   background-color: rgba(208, 207, 207, 0.392);
   backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: all 3s ease;
+}
+.backdrop-update.show {
+  opacity: 1;
 }
 .backdrop-update .form-update {
   position: relative;
