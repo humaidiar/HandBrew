@@ -43,5 +43,3 @@ export default function AllCoffee() {
     </section>
   )
 }
-
-// ado2
