@@ -5,6 +5,7 @@ import SingleCoffee from './CoffeeSingle'
 import AddMethodForm from './FormCoffee'
 import LoadingScreen from './LoadingScreen'
 import FooterBar from './Footer'
+import { motion } from 'framer-motion'
 
 export default function AllCoffee() {
   const dispatch = useAppDispatch()
@@ -24,10 +25,16 @@ export default function AllCoffee() {
           {coffees
             .slice()
             .reverse()
-            .map((coffee) => (
-              <div key={coffee.id}>
+            .map((coffee, index) => (
+              <motion.div
+                transition={{ delay: 0.3 * index }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                key={coffee.id}
+              >
                 <SingleCoffee coffeeProp={coffee} />
-              </div>
+              </motion.div>
             ))}
         </div>
       </div>
