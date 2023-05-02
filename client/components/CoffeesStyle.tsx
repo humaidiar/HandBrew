@@ -16,7 +16,7 @@ export default function AllCoffee() {
   }, [dispatch])
 
   return (
-    <section>
+    <>
       <div className="container">
         <div className="form-wrapper">
           <AddMethodForm />
@@ -40,6 +40,6 @@ export default function AllCoffee() {
       </div>
       <FooterBar />
       <LoadingScreen />
-    </section>
+    </>
   )
 }
