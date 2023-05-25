@@ -94,6 +94,7 @@
     "base64-arraybuffer": "^1.0.2",
     "express": "^4.17.2",
     "express-fileupload": "^1.4.0",
+    "framer-motion": "^10.12.4",
     "knex": "^2.3.0",
     "pg": "^8.10.0",
     "superagent": "7.1.1",

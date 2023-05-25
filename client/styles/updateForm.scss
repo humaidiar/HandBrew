@@ -9,6 +9,13 @@
 
   background-color: rgba(208, 207, 207, 0.392);
   backdrop-filter: blur(5px);
+
+  opacity: 0;
+  transition: all 3s ease;
+
+  &.show{
+    opacity: 1;
+  }
   
   .form-update{
   position: relative;
@@ -26,6 +33,7 @@
   background-color: rgb(244, 244, 244);
   border-radius: 20px;
   box-shadow: rgba(17, 17, 26, 0.05) 0px 0px 16px;
+
 
     
     .close-container{
@@ -129,4 +137,7 @@
     }
   }
 }
+
+
+
 
