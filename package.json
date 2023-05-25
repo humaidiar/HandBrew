@@ -2,7 +2,7 @@
   "name": "my-fullstack-collection-scss",
   "version": "0.1.0",
   "description": "Build a fullstack collection app, with SCSS",
-  "repository": "https://github.com/dev-academy-challenges/my-fullstack-collection-scss",
+  "repository": "https://github.com/humaidiar/HandBrew",
   "main": "server/index.ts",
   "scripts": {
     "build": "run-p build:client build:server",
