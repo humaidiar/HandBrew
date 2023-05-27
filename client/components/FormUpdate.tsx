@@ -8,9 +8,10 @@ import * as Base64 from 'base64-arraybuffer'
 interface Props {
   coffee: CoffeeData
   onClose: () => void
+  show: boolean
 }
 
-export default function UpdateForm({ coffee, onClose }: Props) {
+export default function UpdateForm({ coffee, onClose, show }: Props) {
   const dispatch = useAppDispatch()
   const id = coffee.id
   const [updatedCoffee, setUpdatedCoffee] = useState({
@@ -55,8 +56,8 @@ export default function UpdateForm({ coffee, onClose }: Props) {
   const portalElement = document.getElementById('portal')
   return portalElement
     ? ReactDOM.createPortal(
-        <div className="backdrop-update">
-          <div className="form-update">
+        <div className={`backdrop-update${show ? ' show' : ''}`}>
+          <div className={`form-update${show ? ' show' : ''}`}>
             <form onSubmit={handleSubmit}>
               <div className="close-container">
                 <h2>Update Information</h2>

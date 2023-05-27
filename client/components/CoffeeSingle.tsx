@@ -12,10 +12,6 @@ export default function SingleCoffee(props: Props) {
   const { id, name, url, selftext } = props.coffeeProp
   const dispatch = useAppDispatch()
   const [toggle, setToggle] = useState(false)
-  //cut the words and joining the words => limiting words displaying on screen
-  // const words = selftext.split(' ')
-  // const limitedText = words.slice(0, 18).join(' ') + '...' //optinal
-  // -------
 
   const handleClose = () => {
     setToggle(false)
@@ -35,7 +31,11 @@ export default function SingleCoffee(props: Props) {
           <p>{selftext}</p>
           <div className="button-group">
             {toggle ? (
-              <UpdateForm coffee={props.coffeeProp} onClose={handleClose} />
+              <UpdateForm
+                coffee={props.coffeeProp}
+                onClose={handleClose}
+                show={toggle}
+              />
             ) : (
               <button
                 onClick={() => {
@@ -58,3 +58,8 @@ export default function SingleCoffee(props: Props) {
     </div>
   )
 }
+
+//cut the words and joining the words => limiting words displaying on screen
+// const words = selftext.split(' ')
+// const limitedText = words.slice(0, 18).join(' ') + '...' //optinal
+// -------
