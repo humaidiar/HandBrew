@@ -1,6 +1,6 @@
 import server from './server'
 
-const PORT = process.env.PGPORT || 3000
+const PORT = process.env.PORT || 3000
 
 server.listen(PORT, () => {
   // eslint-disable-next-line no-console
