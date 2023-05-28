@@ -3,6 +3,12 @@
   display: flex;
   flex-wrap: wrap;
 
+  @media (max-width:400px){
+   margin-top: 0;
+   position: relative;
+   }
+
+
 
   /* Form wrapper */
   .form-wrapper {
