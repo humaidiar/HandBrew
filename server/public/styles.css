@@ -368,7 +368,7 @@ span {
 }
 @media (max-width: 400px) {
   .backdrop-update .form-update {
-    width: 80%;
+    width: 75%;
   }
 }
 .backdrop-update .form-update .close-container {
@@ -396,7 +396,7 @@ span {
   justify-content: center;
   flex-direction: column;
   padding: 20px;
-  margin: 2rem;
+  margin: 1rem;
   gap: 12px;
 }
 .backdrop-update .form-update form label {
