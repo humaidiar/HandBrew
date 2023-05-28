@@ -192,7 +192,8 @@
 }
 @media (max-width: 400px) {
   .form-add form {
-    width: 200px;
+    width: 80%;
+    margin: 1rem;
   }
 }
 .form-add form label {
