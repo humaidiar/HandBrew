@@ -55,16 +55,14 @@ function AddMethodForm() {
     e.preventDefault()
     dispatch(fetchAddCoffee(coffeeData.data))
       .then(() => {
-        setTimeout(() => {
-          dispatch(fetchSetCoffee())
-        }, 0)
+        dispatch(fetchSetCoffee())
+        setCoffeeData({
+          ...coffeeData,
+          data: dataEmpty,
+        })
+        setFileName('')
       })
       .catch((err) => err.message)
-    setCoffeeData({
-      ...coffeeData,
-      data: dataEmpty,
-    })
-    setFileName('')
   }
 
   return (

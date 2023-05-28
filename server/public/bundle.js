@@ -4869,15 +4869,13 @@ function AddMethodForm() {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchAddCoffee)(coffeeData.data)).then(() => {
-      setTimeout(() => {
-        dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchSetCoffee)());
-      }, 2000);
+      dispatch((0,_actions_getCoffee__WEBPACK_IMPORTED_MODULE_2__.fetchSetCoffee)());
+      setCoffeeData({
+        ...coffeeData,
+        data: dataEmpty
+      });
+      setFileName('');
     }).catch(err => err.message);
-    setCoffeeData({
-      ...coffeeData,
-      data: dataEmpty
-    });
-    setFileName('');
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     className: "form-add",
