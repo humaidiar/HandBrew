@@ -1,9 +1,9 @@
 exports.up = function (knex) {
   return knex.schema.createTable('coffee', function (table) {
     table.increments('id').primary()
-    table.string('name')
+    table.text('name')
     table.text('url')
-    table.string('selftext')
+    table.text('selftext')
   })
 }
 
