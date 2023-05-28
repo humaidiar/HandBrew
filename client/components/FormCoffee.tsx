@@ -57,7 +57,7 @@ function AddMethodForm() {
       .then(() => {
         setTimeout(() => {
           dispatch(fetchSetCoffee())
-        }, 2000)
+        }, 0)
       })
       .catch((err) => err.message)
     setCoffeeData({
