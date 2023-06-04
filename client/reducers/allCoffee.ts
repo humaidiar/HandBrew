@@ -12,6 +12,7 @@ export default function coffeeReducer(
   switch (type) {
     case 'SET_COFFEE':
       return payload
+
     case 'ADD_COFFEE':
       return [...state, payload]
     case 'UPDATE_COFFEE':

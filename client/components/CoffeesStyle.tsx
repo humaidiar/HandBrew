@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { fetchSetCoffee } from '../actions/getCoffee'
 import SingleCoffee from './CoffeeSingle'

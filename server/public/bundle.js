@@ -4576,7 +4576,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var superagent__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(superagent__WEBPACK_IMPORTED_MODULE_0__);
 
 function getAllCoffee() {
-  return superagent__WEBPACK_IMPORTED_MODULE_0___default().get('/api/v1/coffee').then(res => res.body);
+  return superagent__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/v1/coffee/`).then(res => res.body);
 }
 function addCoffeeApi(newCoffee) {
   return superagent__WEBPACK_IMPORTED_MODULE_0___default().post('/api/v1/coffee').send(newCoffee).then(res => {
