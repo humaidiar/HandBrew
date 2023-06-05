@@ -100,6 +100,7 @@
     "hooks": "^0.3.2",
     "knex": "^2.3.0",
     "pg": "^8.10.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "superagent": "7.1.1",
     "ts-node": "^10.9.1"
   },

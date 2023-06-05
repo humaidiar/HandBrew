@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { fetchSetCoffee } from '../actions/getCoffee'
 import SingleCoffee from './CoffeeSingle'
@@ -6,6 +6,7 @@ import AddMethodForm from './FormCoffee'
 import LoadingScreen from './LoadingScreen'
 import FooterBar from './Footer'
 import { motion } from 'framer-motion'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 export default function AllCoffee() {
   const dispatch = useAppDispatch()
