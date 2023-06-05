@@ -9,6 +9,7 @@ import { motion } from 'framer-motion'
 
 export default function AllCoffee() {
   const dispatch = useAppDispatch()
+  // the coffees data
   const coffees = useAppSelector((state) => state.coffeeReducer)
 
   useEffect(() => {
