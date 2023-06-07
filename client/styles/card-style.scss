@@ -10,11 +10,14 @@
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px 0px;
   transition: 1s all ease;
-
-  &:hover{
+  
+  @media(hover:hover){
+    &:hover{
     box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
     transform: translateY(-5px)
   }
+  }
+  
 
   @media (max-width:500px){
     width: 75vw;
@@ -123,4 +126,4 @@
         }
     }
 
-}
+  }
